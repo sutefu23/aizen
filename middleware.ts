@@ -1,30 +1,27 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const AUTH_COOKIE_NAME = "aizen-auth";
+const AUTH_TOKEN = process.env.AUTH_TOKEN || "aizen-secret-token";
+
 export function middleware(request: NextRequest) {
-  const authHeader = request.headers.get("authorization");
+  const { pathname } = request.nextUrl;
 
-  if (authHeader) {
-    const [scheme, encoded] = authHeader.split(" ");
-    if (scheme === "Basic" && encoded) {
-      const decoded = atob(encoded);
-      const [user, pass] = decoded.split(":");
-
-      const validUser = process.env.BASIC_AUTH_USER || "admin";
-      const validPass = process.env.BASIC_AUTH_PASSWORD || "password";
-
-      if (user === validUser && pass === validPass) {
-        return NextResponse.next();
-      }
-    }
+  // ログインページとAPIは認証不要
+  if (pathname === "/login" || pathname === "/api/login") {
+    return NextResponse.next();
   }
 
-  return new NextResponse("Authentication required", {
-    status: 401,
-    headers: {
-      "WWW-Authenticate": 'Basic realm="Secure Area"',
-    },
-  });
+  const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
+
+  if (token === AUTH_TOKEN) {
+    return NextResponse.next();
+  }
+
+  // 未認証 → ログインページへリダイレクト
+  const loginUrl = new URL("/login", request.url);
+  loginUrl.searchParams.set("from", pathname);
+  return NextResponse.redirect(loginUrl);
 }
 
 export const config = {
