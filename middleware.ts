@@ -1,6 +1,7 @@
-import { next } from "@vercel/edge";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export default function middleware(request: Request) {
+export function middleware(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
 
   if (authHeader) {
@@ -13,15 +14,19 @@ export default function middleware(request: Request) {
       const validPass = process.env.BASIC_AUTH_PASSWORD || "password";
 
       if (user === validUser && pass === validPass) {
-        return next();
+        return NextResponse.next();
       }
     }
   }
 
-  return new Response("Authentication required", {
+  return new NextResponse("Authentication required", {
     status: 401,
     headers: {
       "WWW-Authenticate": 'Basic realm="Secure Area"',
     },
   });
 }
+
+export const config = {
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+};
