@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社AIZEN｜正直なITコンサルティング</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  /* === RESET & TOKENS === */
+  :root {
+    --ink: #111009;
+    --ink-light: #3a3530;
+    --paper: #f7f4ee;
+    --red: #c0392b;
+    --red-dark: #962d22;
+    --muted: #6b6356;
+    --rule: #ddd8cc;
+    --surface: #ffffff;
+    --gold: #b8923a;
+    --nav-height: 64px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+
+  /* === NAV === */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(17, 16, 9, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0 48px;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--paper);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #c8c2b4;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--paper);
+  }
+
+  .nav-links .nav-cta {
+    background: var(--red);
+    color: #fff;
+    padding: 8px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: background 0.2s;
+  }
+
+  .nav-links .nav-cta:hover {
+    background: var(--red-dark);
+  }
+
+  /* Hamburger (mobile) */
+  .nav-toggle { display: none; }
+  .nav-toggle-label {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .nav-toggle-label span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--paper);
+    transition: 0.3s;
+  }
+
+  /* === HERO === */
+  .hero {
+    padding: 120px 48px 100px;
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: fit-content;
+    margin: 0 auto;
+  }
+
+  .hero-headline {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-headline .honest {
+    color: var(--red);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-headline .honest::after {
+    content: '';
+    display: block;
+    height: 3px;
+    background: var(--red);
+    margin-top: -4px;
+  }
+
+  .hero-sub {
+    margin-top: 32px;
+    font-size: 16px;
+    color: var(--muted);
+    /* max-width: 600px; */
+    line-height: 2;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 44px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    padding: 14px 36px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--red-dark); }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--ink);
+    padding: 14px 36px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border: 1.5px solid var(--ink);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* === SECTION COMMON === */
+  .section {
+    padding: 100px 48px;
+    scroll-margin-top: calc(var(--nav-height) + 16px);
+  }
+
+  .section-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: clamp(22px, 2.5vw, 28px);
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+
+  .section p {
+    font-size: 15px;
+    line-height: 2.15;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+
+  /* === ABOUT (課題提起 + 正直BOX) === */
+  .about { border-bottom: 1px solid var(--rule); }
+
+  .honest-box {
+    margin: 40px 0 0;
+    border: 2px solid var(--ink);
+    padding: 28px 32px;
+    position: relative;
+    background: var(--surface);
+    max-width: 720px;
+  }
+
+  .honest-box-label {
+    position: absolute;
+    top: -13px;
+    left: 20px;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+  }
+
+  .honest-box p {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    line-height: 2;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .honest-box p + p {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+  }
+
+  /* === SERVICES === */
+  .services { background: var(--surface); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .service-card {
+    background: var(--paper);
+    padding: 32px 28px;
+    border-top: 3px solid var(--red);
+    transition: transform 0.2s;
+  }
+  .service-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .service-card h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .service-card p {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--ink-light);
+    margin: 0;
+  }
+
+  /* === TEAM === */
+  .team-members {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin-top: 40px;
+  }
+
+  .team-member {
+    max-width: 720px;
+  }
+
+  .team-member-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+
+  .team-member-name {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .team-member-bio {
+    font-size: 14.5px;
+    line-height: 2.1;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+  }
+
+  .team-quote {
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .team-quote p {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.9;
+    color: var(--ink);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+
+  /* === COMPANY INFO === */
+  .info { border-bottom: 1px solid var(--rule); }
+
+  .company-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 8px;
+    max-width: 720px;
+  }
+  .company-table tr {
+    border-bottom: 1px solid var(--rule);
+  }
+  .company-table th {
+    text-align: left;
+    padding: 14px 16px 14px 0;
+    font-weight: 500;
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+    vertical-align: top;
+    width: 130px;
+  }
+  .company-table td {
+    padding: 14px 0;
+    line-height: 1.9;
+  }
+
+  /* === CONTACT === */
+  .contact {
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+  }
+
+  .contact .section-label {
+    justify-content: center;
+  }
+  .contact .section-label::after {
+    display: none;
+  }
+
+  .contact h2 {
+    color: var(--paper);
+  }
+
+  .contact p {
+    color: #c8c2b4;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .contact .btn-primary {
+    margin-top: 32px;
+  }
+
+  .contact-email {
+    margin-top: 24px;
+    font-size: 14px;
+    color: #8a8478;
+  }
+
+  .contact-email a {
+    color: #c8c2b4;
+    text-decoration: none;
+    border-bottom: 1px solid #555;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    padding: 32px 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-logo img {
+    height: 60px;
+    opacity: 0.7;
+  }
+
+  .footer-copy {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #6b6356;
+  }
+
+  /* === MOBILE === */
+  @media (max-width: 768px) {
+    .nav { padding: 0 20px; }
+
+    .nav-toggle-label {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: rgba(17, 16, 9, 0.98);
+      flex-direction: column;
+      padding: 24px 20px;
+      gap: 20px;
+    }
+
+    .nav-toggle:checked ~ .nav-links {
+      display: flex;
+    }
+
+    .hero {
+      padding: 80px 20px 60px;
+      min-height: 70vh;
+    }
+
+    .section { padding: 60px 20px; }
+
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+      text-align: center;
+    }
+
+    .footer {
+      padding: 24px 20px;
+    }
+
+    .company-table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">AIZEN</a>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+  <label for="nav-toggle" class="nav-toggle-label">
+    <span></span><span></span><span></span>
+  </label>
+  <ul class="nav-links">
+    <li><a href="#about">私たちについて</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#team">チーム</a></li>
+    <li><a href="#info">会社概要</a></li>
+    <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <h1 class="hero-headline">
+    ITコンサルが、<span class="honest">本当のこと</span>を言う。<br>
+    それだけで、ずいぶん変わるはずです。
+  </h1>
+  <p class="hero-sub">
+    流行に流されず、御社にとって本当に必要なことだけを提案する。<br>
+    AIZENは「正直さ」をプロフェッショナリズムとして届けるITコンサルティング会社です。
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">まず、正直に話しましょう</a>
+    <a href="#about" class="btn-secondary">AIZENについて</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="section-inner">
+    <div class="section-label">About</div>
+    <h2>なぜ、コンサルタントは本当のことを言えないのか</h2>
+    <p>
+      「契約を維持したくて指摘できない」「技術の実態を知らないまま提案する」「正直に言わない方が儲かる」——
+      本来、顧客の利益を最優先すべきコンサルタントが、正直であることを選べない構造がこの業界にはあります。
+    </p>
+    <p>
+      AIZENは、その構造に正面から向き合います。
+      耳の痛いことでも、御社の未来にとって必要なことは、最初の打ち合わせからお伝えします。
+    </p>
+
+    <div class="honest-box">
+      <div class="honest-box-label">正直に言います</div>
+      <p>「AI導入」と言っても、それは万能薬ではありません。</p>
+      <p>壮大なDX計画や資金投入によって、勝手に良くなる事はありません。</p>
+      <p>「皆さんにはまだ早い」。私たちはそれを、正直にお伝えします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="section-inner">
+    <div class="section-label">Services</div>
+    <h2>正直さを、プロフェッショナリズムとして提供する</h2>
+    <p>
+      「提案して終わり」ではなく、実際に動くものをつくる技術力を持った上で、
+      戦略から現場まで一気通貫で関わります。
+    </p>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>AI戦略立案</h3>
+        <p>御社にとって本当にAIが必要かを見極め、必要であれば最適な導入ロードマップを設計します。不要なら、そうお伝えします。</p>
+      </div>
+      <div class="service-card">
+        <h3>IT構想設計</h3>
+        <p>ベンダーの都合ではなく、御社のビジネスを起点にしたシステム構想を描きます。過剰な投資を防ぐ設計を重視します。</p>
+      </div>
+      <div class="service-card">
+        <h3>導入実装支援</h3>
+        <p>自らコードを書ける技術力で、提案と実装のギャップをなくします。動くものをつくりながら、現場と伴走します。</p>
+      </div>
+      <div class="service-card">
+        <h3>定着化コンサルティング</h3>
+        <p>導入後こそが本番です。現場にツールが根づくまで支援し、「導入したが使われない」をなくします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section" id="team">
+  <div class="section-inner">
+    <div class="section-label">Team</div>
+    <h2>「本当のこと」を言える、二人の創業者</h2>
+
+    <div class="team-members">
+      <div class="team-member">
+        <div class="team-member-role">Chief Executive Officer</div>
+        <div class="team-member-name">関 資明</div>
+        <p class="team-member-bio">
+          15年以上、日本の社会基盤を支える規模の大型ITプロジェクトのマネージャー経験を経て、
+          クライアントに対して正直であることが最大の価値提供になると確信し、AIZENを創業。
+        </p>
+        <div class="team-quote">
+          <p>
+            日本経済の核を担う顧客企業を元気にする。<br>
+            それが本当の意味での戦略パートナーだと思っています。<br>
+            AIZENはそういう会社でありたい。
+          </p>
+        </div>
+      </div>
+
+      <div class="team-member">
+        <div class="team-member-role">Chief Technology Officer</div>
+        <div class="team-member-name">平川 知秀</div>
+        <p class="team-member-bio">
+          15年以上にわたり現場でコードを書き続けてきたエンジニア。
+          実家の会社のDXを機に独立。技術の実装を知る者として、誠実な技術判断を提供する。
+        </p>
+        <div class="team-quote">
+          <p>
+            自分でコードを書きながら現場を見てきた。<br>
+            「これは本当に必要か」と自問し続けてきた。<br>
+            AIZENは誠を尽くす存在でありたい。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY INFO -->
+<section class="section info" id="info">
+  <div class="section-inner">
+    <div class="section-label">Company</div>
+    <h2>会社概要</h2>
+    <table class="company-table">
+      <tr><th>名称</th><td>AIZEN</td></tr>
+      <tr><th>本社所在地</th><td>東京都港区</td></tr>
+      <tr><th>代表</th><td>関 資明</td></tr>
+      <tr><th>代表</th><td>平川 知秀</td></tr>
+      <tr><th>事業内容</th><td>ITコンサルティング、AI戦略立案・導入支援、DX推進支援</td></tr>
+      <tr><th>対象顧客</th><td>中小企業・大企業・エンタープライズ企業</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2>まず、正直に話しましょう</h2>
+    <p>
+      「今のベンダーの提案、本当に妥当？」「AIを入れるべきか迷っている」——<br>
+      そんなご相談から、お気軽にお声がけください。
+    </p>
+    <a href="mailto:info@aizen.co.jp" class="btn-primary">お問い合わせ</a>
+    <p class="contact-email">
+      <a href="mailto:info@aizen.co.jp">info@aizen.co.jp</a>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="./logo.png" alt="AIZEN">
+  </div>
+  <div class="footer-copy">© 2026 AIZEN Inc.</div>
+</footer>
+
+</body>
+</html>
