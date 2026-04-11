@@ -6,6 +6,7 @@ const AUTH_TOKEN = process.env.AUTH_TOKEN || "aizen-secret-token";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  return NextResponse.next();
 
   // ログインページとAPIは認証不要
   if (pathname === "/login" || pathname === "/api/login") {
