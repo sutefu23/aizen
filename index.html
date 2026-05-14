@@ -335,6 +335,86 @@
     margin: 0;
   }
 
+  /* === STRENGTHS / ETHOPATH AI === */
+  .strengths { background: var(--paper); border-top: 1px solid var(--rule); }
+
+  .strengths-concept {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(16px, 1.8vw, 20px);
+    line-height: 1.9;
+    color: var(--ink);
+    margin: 32px 0 24px;
+    padding-left: 20px;
+    border-left: 3px solid var(--gold);
+    max-width: 720px;
+  }
+
+  .strengths-concept .strengths-en {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    display: block;
+    font-size: 0.85em;
+    margin-bottom: 6px;
+  }
+
+  .strengths-message {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 15px;
+    color: var(--red);
+    letter-spacing: 0.06em;
+    margin-top: 16px;
+  }
+
+  .strengths-subtitle {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: clamp(18px, 2vw, 22px);
+    letter-spacing: 0.08em;
+    margin-top: 48px;
+    padding-left: 16px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .strength-points {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .strength-card {
+    padding: 28px 26px;
+    background: var(--surface);
+    border-top: 2px solid var(--gold);
+  }
+
+  .strength-card-tag {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .strength-card h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .strength-card p {
+    font-size: 13.5px;
+    line-height: 1.95;
+    color: var(--ink-light);
+    margin: 0;
+  }
+
   /* === SERVICES === */
   .services { background: var(--surface); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
 
@@ -552,6 +632,10 @@
       grid-template-columns: 1fr;
     }
 
+    .strength-points {
+      grid-template-columns: 1fr;
+    }
+
     .hero-actions {
       flex-direction: column;
     }
@@ -582,6 +666,7 @@
   <ul class="nav-links">
     <li><a href="#about">私たちについて</a></li>
     <li><a href="#fde">FDEとは</a></li>
+    <li><a href="#strengths">強み</a></li>
     <li><a href="#services">サービス</a></li>
     <li><a href="#team">チーム</a></li>
     <li><a href="#info">概要</a></li>
@@ -665,6 +750,47 @@
         <div class="fde-point-num">03</div>
         <h3>結果に責任を持つ</h3>
         <p>「導入したが使われない」を許さない。定着し、効果が出るまで伴走します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS / ETHOPATH AI -->
+<section class="section strengths" id="strengths">
+  <div class="section-inner">
+    <div class="section-label">Our Strength</div>
+    <h2>EthoPath AI — データの論理を、信頼と情熱で社会に実装する</h2>
+    <p>
+      FDEとしての技術力に、私たちならではの2つの強みを掛け合わせます。
+      それが <strong>EthoPath AI（エトパス・アイ）</strong> です。
+    </p>
+
+    <div class="strengths-concept">
+      <span class="strengths-en">Ethos × Pathos × AI</span>
+      「Ethos（信頼・慣習）」「Pathos（感情）」「AI」を統合した名称です。
+      データの論理（AI）を、現場の信頼（Ethos）と熱量（Pathos）というフィルターに通して、
+      社会に実装する「道（Path）」となります。
+      <div class="strengths-message">AI（愛）を持って、「信頼」と「情熱」を。</div>
+    </div>
+
+    <h3 class="strengths-subtitle">我々の強み</h3>
+
+    <div class="strength-points">
+      <div class="strength-card">
+        <div class="strength-card-tag">Ethos ／ 信頼</div>
+        <h3>業界に根ざしたドメイン知識</h3>
+        <p>
+          IT技術のトレンドを追うだけではありません。年金・医療・福祉・製造業・国家プロジェクトといった
+          特定業界の制度や実務に深く精通し、その業界の文脈に合った実装を行います。
+        </p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-card-tag">Pathos ／ 情熱</div>
+        <h3>データドリブンではなく、ヒューマンドリブン</h3>
+        <p>
+          データだけを起点にはしません。従業員へのヒアリングを通じて、人の感情や企業文化を汲み取り、
+          現場で本当に動き、根づく解決策をつくります。
+        </p>
       </div>
     </div>
   </div>
