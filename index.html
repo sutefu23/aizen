@@ -3,519 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AIZENは「正直さ」をプロフェッショナリズムとして届けるITコンサルティングです。戦略立案から現場実装まで、FDEが一気通貫で伴走します。">
+<meta name="theme-color" content="#082d50">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>株式会社AIZEN｜正直なITコンサルティング</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;600&family=Shippori+Mincho:wght@400;500;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
-<style>
-  /* === RESET & TOKENS === */
-  :root {
-    --ink: #111009;
-    --ink-light: #3a3530;
-    --paper: #f7f4ee;
-    --red: #c0392b;
-    --red-dark: #962d22;
-    --muted: #6b6356;
-    --rule: #ddd8cc;
-    --surface: #ffffff;
-    --gold: #b8923a;
-    --nav-height: 64px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Noto Sans JP', sans-serif;
-    font-weight: 300;
-    line-height: 1.9;
-  }
-
-  /* === NAV === */
-  .nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(17, 16, 9, 0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 0 48px;
-    height: var(--nav-height);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 20px;
-    color: var(--paper);
-    letter-spacing: 0.15em;
-    text-decoration: none;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    color: #c8c2b4;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover {
-    color: var(--paper);
-  }
-
-  .nav-links .nav-cta {
-    background: var(--red);
-    color: #fff;
-    padding: 8px 20px;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    transition: background 0.2s;
-  }
-
-  .nav-links .nav-cta:hover {
-    background: var(--red-dark);
-  }
-
-  /* Hamburger (mobile) */
-  .nav-toggle { display: none; }
-  .nav-toggle-label {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .nav-toggle-label span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: var(--paper);
-    transition: 0.3s;
-  }
-
-  /* === HERO === */
-  .hero {
-    padding: 120px 48px 100px;
-    position: relative;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width: fit-content;
-    margin: 0 auto;
-  }
-
-  .hero-headline {
-    font-family: 'Shippori Mincho', serif;
-    font-weight: 700;
-    font-size: clamp(28px, 4vw, 48px);
-    line-height: 1.5;
-    letter-spacing: 0.05em;
-  }
-
-  .hero-headline .honest {
-    color: var(--red);
-    position: relative;
-    display: inline-block;
-  }
-
-  .hero-headline .honest::after {
-    content: '';
-    display: block;
-    height: 3px;
-    background: var(--red);
-    margin-top: -4px;
-  }
-
-  .hero-sub {
-    margin-top: 32px;
-    font-size: 16px;
-    color: var(--muted);
-    /* max-width: 600px; */
-    line-height: 2;
-    font-family: 'Noto Serif JP', serif;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    margin-top: 44px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--red);
-    color: #fff;
-    padding: 14px 36px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    transition: background 0.2s;
-  }
-  .btn-primary:hover { background: var(--red-dark); }
-
-  .btn-secondary {
-    display: inline-block;
-    background: transparent;
-    color: var(--ink);
-    padding: 14px 36px;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    border: 1.5px solid var(--ink);
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  /* === SECTION COMMON === */
-  .section {
-    padding: 100px 48px;
-    scroll-margin-top: calc(var(--nav-height) + 16px);
-  }
-
-  .section-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
-  }
-
-  .section h2 {
-    font-family: 'Shippori Mincho', serif;
-    font-weight: 600;
-    font-size: clamp(22px, 2.5vw, 28px);
-    margin-bottom: 24px;
-    letter-spacing: 0.05em;
-    line-height: 1.6;
-  }
-
-  .section p {
-    font-size: 15px;
-    line-height: 2.15;
-    color: var(--ink-light);
-    margin-bottom: 16px;
-    max-width: 720px;
-  }
-
-  /* === ABOUT (課題提起 + 正直BOX) === */
-  .about { border-bottom: 1px solid var(--rule); }
-
-  .honest-box {
-    margin: 40px 0 0;
-    border: 2px solid var(--ink);
-    padding: 28px 32px;
-    position: relative;
-    background: var(--surface);
-    max-width: 720px;
-  }
-
-  .honest-box-label {
-    position: absolute;
-    top: -13px;
-    left: 20px;
-    background: var(--red);
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 3px 12px;
-  }
-
-  .honest-box p {
-    font-family: 'Shippori Mincho', serif;
-    font-size: 15px;
-    line-height: 2;
-    margin: 0;
-    color: var(--ink);
-  }
-
-  .honest-box p + p {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px dashed var(--rule);
-  }
-
-  /* === SERVICES === */
-  .services { background: var(--surface); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-top: 40px;
-  }
-
-  .service-card {
-    background: var(--paper);
-    padding: 32px 28px;
-    border-top: 3px solid var(--red);
-    transition: transform 0.2s;
-  }
-  .service-card:hover {
-    transform: translateY(-2px);
-  }
-
-  .service-card h3 {
-    font-family: 'Shippori Mincho', serif;
-    font-weight: 600;
-    font-size: 17px;
-    margin-bottom: 12px;
-    letter-spacing: 0.04em;
-  }
-
-  .service-card p {
-    font-size: 14px;
-    line-height: 2;
-    color: var(--ink-light);
-    margin: 0;
-  }
-
-  /* === TEAM === */
-  .team-members {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-    margin-top: 40px;
-  }
-
-  .team-member {
-    max-width: 720px;
-  }
-
-  .team-member-role {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 4px;
-  }
-
-  .team-member-name {
-    font-family: 'Shippori Mincho', serif;
-    font-weight: 600;
-    font-size: 20px;
-    letter-spacing: 0.08em;
-    margin-bottom: 16px;
-  }
-
-  .team-member-bio {
-    font-size: 14.5px;
-    line-height: 2.1;
-    color: var(--ink-light);
-    margin-bottom: 20px;
-  }
-
-  .team-quote {
-    padding: 24px 0;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .team-quote p {
-    font-family: 'Shippori Mincho', serif;
-    font-size: clamp(15px, 2vw, 18px);
-    line-height: 1.9;
-    color: var(--ink);
-    letter-spacing: 0.04em;
-    margin: 0;
-  }
-
-  /* === COMPANY INFO === */
-  .info { border-bottom: 1px solid var(--rule); }
-
-  .company-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    margin-top: 8px;
-    max-width: 720px;
-  }
-  .company-table tr {
-    border-bottom: 1px solid var(--rule);
-  }
-  .company-table th {
-    text-align: left;
-    padding: 14px 16px 14px 0;
-    font-weight: 500;
-    color: var(--muted);
-    font-size: 13px;
-    white-space: nowrap;
-    vertical-align: top;
-    width: 130px;
-  }
-  .company-table td {
-    padding: 14px 0;
-    line-height: 1.9;
-  }
-
-  /* === CONTACT === */
-  .contact {
-    background: var(--ink);
-    color: var(--paper);
-    text-align: center;
-  }
-
-  .contact .section-label {
-    justify-content: center;
-  }
-  .contact .section-label::after {
-    display: none;
-  }
-
-  .contact h2 {
-    color: var(--paper);
-  }
-
-  .contact p {
-    color: #c8c2b4;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-
-  .contact .btn-primary {
-    margin-top: 32px;
-  }
-
-  .contact-email {
-    margin-top: 24px;
-    font-size: 14px;
-    color: #8a8478;
-  }
-
-  .contact-email a {
-    color: #c8c2b4;
-    text-decoration: none;
-    border-bottom: 1px solid #555;
-  }
-
-  /* === FOOTER === */
-  .footer {
-    padding: 32px 48px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    background: var(--ink);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .footer-logo img {
-    height: 60px;
-    opacity: 0.7;
-  }
-
-  .footer-copy {
-    font-family: 'Syne', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: #6b6356;
-  }
-
-  /* === MOBILE === */
-  @media (max-width: 768px) {
-    .nav { padding: 0 20px; }
-
-    .nav-toggle-label {
-      display: flex;
-    }
-
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: var(--nav-height);
-      left: 0;
-      right: 0;
-      background: rgba(17, 16, 9, 0.98);
-      flex-direction: column;
-      padding: 24px 20px;
-      gap: 20px;
-    }
-
-    .nav-toggle:checked ~ .nav-links {
-      display: flex;
-    }
-
-    .hero {
-      padding: 80px 20px 60px;
-      min-height: 70vh;
-    }
-
-    .section { padding: 60px 20px; }
-
-    .service-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .hero-actions {
-      flex-direction: column;
-    }
-    .btn-primary, .btn-secondary {
-      text-align: center;
-    }
-
-    .footer {
-      padding: 24px 20px;
-    }
-
-    .company-table {
-      display: block;
-      overflow-x: auto;
-    }
-  }
-</style>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+<a class="skip-link" href="#main">本文へ移動</a>
 
 <!-- NAV -->
-<nav class="nav">
-  <a href="#" class="nav-logo">AIZEN</a>
-  <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
-  <label for="nav-toggle" class="nav-toggle-label">
-    <span></span><span></span><span></span>
-  </label>
-  <ul class="nav-links">
+<nav class="nav" aria-label="メインナビゲーション">
+  <a href="#top" class="nav-logo" aria-label="AIZEN トップへ"><img src="./assets/aizen-brush-logo.png" alt="AIZEN" width="1380" height="752"></a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="メニューを開く"><span></span><span></span></button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">私たちについて</a></li>
+    <li><a href="#fde">FDEとは</a></li>
+    <li><a href="#strengths">強み</a></li>
     <li><a href="#services">サービス</a></li>
     <li><a href="#team">チーム</a></li>
     <li><a href="#info">概要</a></li>
@@ -523,26 +29,27 @@
   </ul>
 </nav>
 
+<main id="main">
 <!-- HERO -->
 <section class="hero" id="top">
-  <h1 class="hero-headline">
-    ITコンサルが、<span class="honest">本当のこと</span>を言う。<br>
-    それだけで、ずいぶん変わるはずです。
-  </h1>
+  <div class="hero-brand"><img src="./assets/aizen-brush-logo.png" alt="AIZEN" width="1380" height="752"><span>AI × DX Consulting</span></div>
+  <div class="hero-eyebrow"><span>IT CONSULTING / FORWARD DEPLOYED ENGINEERING</span></div>
+  <h1 class="hero-headline">ITコンサルが、<br><span class="honest">本当のこと</span>を言う。</h1>
+  <p class="hero-statement">それだけで、ずいぶん変わるはずです。</p>
   <p class="hero-sub">
     流行に流されず、御社にとって本当に必要なことだけを提案する。<br>
     AIZENは「正直さ」をプロフェッショナリズムとして届けるITコンサルティングです。
   </p>
   <div class="hero-actions">
     <a href="#contact" class="btn-primary">まず、正直に話しましょう</a>
-    <a href="#about" class="btn-secondary">AIZENについて</a>
+    <a href="#about" class="btn-secondary">AIZENについて <span aria-hidden="true">↗</span></a>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section class="section about" id="about">
   <div class="section-inner">
-    <div class="section-label">About</div>
+    <div class="section-label"><span>01</span> About</div>
     <h2>なぜ、コンサルタントは本当のことを言えないのか</h2>
     <p>
       「契約を維持したくて指摘できない」「技術の実態を知らないまま提案する」「正直に言わない方が儲かる」——
@@ -562,10 +69,93 @@
   </div>
 </section>
 
+<!-- FDE -->
+<section class="section fde" id="fde">
+  <div class="section-inner">
+    <div class="section-label"><span>02</span> What is FDE</div>
+    <h2>FDEとは</h2>
+    <p>
+      AIZENは、日本で初めて「FDE集団」を名乗るプロフェッショナルファームです。
+      コンサルタントとエンジニアの境界を越え、戦略立案から現場実装までを同一の人間が担います。
+    </p>
+
+    <div class="fde-lead">
+      <span class="fde-en">Forward Deployed Engineer</span>
+      クライアントの現場に深く入り込み、自らコードを書いて課題を解決するエンジニア。
+      米Palantir社が体系化し、世界の先進企業で採用が広がる新しい職能です。
+    </div>
+
+    <p>
+      「提案するだけのコンサルタント」と「言われた通りにつくるエンジニア」——
+      この2つの間に横たわる溝こそ、日本のIT・DXが進まない最大の理由だと、私たちは考えています。
+      FDEは、その溝を一人の人間の中で埋める存在です。
+    </p>
+
+    <div class="fde-points">
+      <div class="fde-point">
+        <div class="fde-point-num">01</div>
+        <h3>戦略と実装を分けない</h3>
+        <p>提案書を書いた本人が、コードも書く。机上の戦略と現場の実装が乖離しません。</p>
+      </div>
+      <div class="fde-point">
+        <div class="fde-point-num">02</div>
+        <h3>現場に深く入る</h3>
+        <p>クライアントの業務を理解し、隣に座って一緒に動くものをつくります。</p>
+      </div>
+      <div class="fde-point">
+        <div class="fde-point-num">03</div>
+        <h3>結果に責任を持つ</h3>
+        <p>「導入したが使われない」を許さない。定着し、効果が出るまで伴走します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS / ETHOPATH AI -->
+<section class="section strengths" id="strengths">
+  <div class="section-inner">
+    <div class="section-label"><span>03</span> Our Strength</div>
+    <h2><span class="concept-title">EthoPath AI</span>データの論理を、<br>信頼と情熱で社会に実装する</h2>
+    <p>
+      FDEとしての技術力に、私たちならではの2つの強みを掛け合わせます。
+      それが <strong>EthoPath AI（エトパス・アイ）</strong> です。
+    </p>
+
+    <div class="strengths-concept">
+      <span class="strengths-en">Ethos × Pathos × AI</span>
+      「Ethos（信頼・慣習）」「Pathos（感情）」「AI」を統合した名称です。
+      データの論理（AI）を、現場の信頼（Ethos）と熱量（Pathos）というフィルターに通して、
+      社会に実装する「道（Path）」となります。
+      <div class="strengths-message">AI（愛）を持って、「信頼」と「情熱」を。</div>
+    </div>
+
+    <h3 class="strengths-subtitle">我々の強み</h3>
+
+    <div class="strength-points">
+      <div class="strength-card">
+        <div class="strength-card-tag">Ethos ／ 信頼</div>
+        <h3>業界に根ざしたドメイン知識</h3>
+        <p>
+          IT技術のトレンドを追うだけではありません。公共分野・製造業・国家プロジェクトといった
+          特定業界の制度や実務に深く精通し、その業界の文脈に合った実装を行います。
+        </p>
+      </div>
+      <div class="strength-card">
+        <div class="strength-card-tag">Pathos ／ 情熱</div>
+        <h3>データドリブンではなく、ヒューマンドリブン</h3>
+        <p>
+          データだけを起点にはしません。従業員へのヒアリングを通じて、人の感情や企業文化を汲み取り、
+          現場で本当に動き、根づく解決策をつくります。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section class="section services" id="services">
   <div class="section-inner">
-    <div class="section-label">Services</div>
+    <div class="section-label"><span>04</span> Services</div>
     <h2>正直さを、プロフェッショナリズムとして提供する</h2>
     <p>
       「提案して終わり」ではなく、実際に動くものをつくる技術力を持った上で、
@@ -596,7 +186,7 @@
 <!-- TEAM -->
 <section class="section" id="team">
   <div class="section-inner">
-    <div class="section-label">Team</div>
+    <div class="section-label"><span>05</span> Team</div>
     <h2>「本当のこと」を言える、二人の創業者</h2>
 
     <div class="team-members">
@@ -638,11 +228,11 @@
 <!-- COMPANY INFO -->
 <section class="section info" id="info">
   <div class="section-inner">
-    <div class="section-label">Company</div>
+    <div class="section-label"><span>06</span> Company</div>
     <h2>概要</h2>
     <table class="company-table">
       <tr><th>名称</th><td>AIZEN</td></tr>
-      <tr><th>本社所在地</th><td>東京都港区</td></tr>
+      <tr><th>本社所在地</th><td>東京都港区芝５丁目３６−４ 札の辻スクエア 9F</td></tr>
       <tr><th>代表</th><td>関 資明</td></tr>
       <tr><th>代表</th><td>平川 知秀</td></tr>
       <tr><th>事業内容</th><td>ITコンサルティング、AI戦略立案・導入支援、DX推進支援</td></tr>
@@ -653,7 +243,7 @@
 <!-- CONTACT -->
 <section class="section contact" id="contact">
   <div class="section-inner">
-    <div class="section-label">Contact</div>
+    <div class="section-label"><span>07</span> Contact</div>
     <h2>まず、正直に話しましょう</h2>
     <p>
       「今のベンダーの提案、本当に妥当？」「AIを入れるべきか迷っている」——<br>
@@ -666,13 +256,39 @@
   </div>
 </section>
 
+</main>
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-logo">
-    <img src="./logo.png" alt="AIZEN">
+    <img src="./assets/aizen-brush-logo.png" alt="AIZEN" width="1380" height="752" loading="lazy">
   </div>
   <div class="footer-copy">© 2026 AIZEN Inc.</div>
 </footer>
 
+<script>
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+function closeMenu() {
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'メニューを開く');
+  links.classList.remove('is-open');
+}
+toggle.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') !== 'true';
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  links.classList.toggle('is-open', open);
+});
+links.addEventListener('click', (event) => {
+  if (event.target.closest('a')) closeMenu();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+    closeMenu();
+    toggle.focus();
+  }
+});
+window.matchMedia('(min-width: 1101px)').addEventListener('change', closeMenu);
+</script>
 </body>
 </html>
