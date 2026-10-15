@@ -171,14 +171,38 @@
     <div class="section-label"><span>09</span> Contact</div>
     <h2>守りの第一歩を、ここから。</h2>
     <p>「社内に詳しい人がいない」「何から対策すればいいかわからない」<br>「取引先からセキュリティ対応を求められた」<br>まずは、いま抱えている課題をお聞かせください。</p>
-    <a href="mailto:info@aizen.co.jp" class="btn-primary">セキュリティについて相談する</a>
-    <p class="contact-email"><a href="mailto:info@aizen.co.jp">info@aizen.co.jp</a></p>
+    <form class="contact-form" id="contact-form" aria-label="お問い合わせフォーム">
+      <p class="contact-notice" id="contact-notice" role="status" hidden>フォームは現在準備中です。お手数ですが、下記のメールアドレスへお問い合わせください。</p>
+      <fieldset class="contact-fields" id="contact-fields" disabled>
+        <div class="contact-row">
+          <label class="contact-field"><span>お名前<em>必須</em></span><input name="name" required maxlength="100" autocomplete="name" placeholder="山田 太郎"></label>
+          <label class="contact-field"><span>会社名<em class="is-optional">任意</em></span><input name="company" maxlength="160" autocomplete="organization" placeholder="株式会社○○"></label>
+        </div>
+        <div class="contact-row">
+          <label class="contact-field"><span>メールアドレス<em>必須</em></span><input name="email" type="email" required maxlength="254" autocomplete="email" placeholder="yourname@example.co.jp"></label>
+          <label class="contact-field"><span>電話番号<em class="is-optional">任意</em></span><input name="phone" type="tel" maxlength="40" autocomplete="tel" placeholder="03-0000-0000"></label>
+        </div>
+        <label class="contact-field"><span>お問い合わせ内容<em>必須</em></span><textarea name="message" required minlength="5" maxlength="4000" rows="6" placeholder="いま抱えている課題や、ご相談したいことをお聞かせください。"></textarea></label>
+        <div class="contact-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <label class="contact-consent"><input type="checkbox" name="privacyConsent" required><span><a href="/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>に同意する</span></label>
+        <p class="contact-small">送信時にCloudflare Turnstileでスパム対策の確認を行います。</p>
+      </fieldset>
+      <div class="contact-turnstile" id="contact-turnstile" role="group" aria-label="スパム対策の認証" tabindex="-1"></div>
+      <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
+      <p class="contact-error" id="contact-error" role="alert" tabindex="-1" hidden></p>
+      <button type="submit" class="btn-primary contact-submit" id="contact-submit" disabled>受付状況を確認しています</button>
+    </form>
+    <div class="contact-done" id="contact-done" tabindex="-1" hidden>
+      <h3>お問い合わせを受け付けました。</h3>
+      <p>受付確認のメールを自動でお送りしました。内容を確認のうえ、担当者からご連絡いたします。</p>
+    </div>
+    <p class="contact-email">メールでのお問い合わせ：<a href="mailto:info@aizen.co.jp">info@aizen.co.jp</a></p>
   </div>
 </section>
 </main>
 <footer class="footer">
   <div class="footer-logo"><img src="./assets/aizen-brush-logo.png" alt="AIZEN" width="1380" height="752" loading="lazy"></div>
-  <div class="footer-copy">© 2026 AIZEN Inc.</div>
+  <div class="footer-meta"><a href="/privacy/">プライバシーポリシー</a><span class="footer-copy">© 2026 AIZEN Inc.</span></div>
 </footer>
 <script>
 const toggle = document.querySelector('.nav-toggle');
@@ -205,5 +229,6 @@ document.addEventListener('keydown', (event) => {
 });
 window.matchMedia('(min-width: 1101px)').addEventListener('change', closeMenu);
 </script>
+<script src="./contact.js" defer></script>
 </body>
 </html>
